@@ -1,10 +1,10 @@
-import { connect, Connection, Options as AMQPOptions } from "amqplib";
+import { connect, Connection, Options as AMQPOptions, Message as AMQPMessage } from "amqplib";
 import { Database, DatabaseOptions } from "ts-framework-common";
 import Channel, { ChannelOptions } from "./Channel";
 
 export const NACK_TIMEOUT = 30000;
 
-export { AMQPOptions };
+export { AMQPOptions, AMQPMessage};
 
 export interface AMQPActions<Data> {
   ack(allUpTo?: boolean): Promise<void>;
@@ -18,10 +18,10 @@ export interface AMQPServiceOptions extends DatabaseOptions {
   messageTimeToLive?: number;
 }
 
-export default class AMQPService extends Database {
+export default class AMQPService<Data> extends Database {
   public options: AMQPServiceOptions;
   protected connection?: Connection;
-  protected channels: Channel[] = [];
+  protected channels: Channel<Data>[] = [];
 
   constructor(options: AMQPServiceOptions) {
     super(options);
@@ -40,7 +40,7 @@ export default class AMQPService extends Database {
     return this.options;
   }
 
-  async channel(name: string, options?: ChannelOptions): Promise<Channel> {
+  async channel(name: string, options?: ChannelOptions<Data>): Promise<Channel<Data>> {
     this.ensureConnection();
     let channel = this.channels.find(channel => channel.options.name === name);
 

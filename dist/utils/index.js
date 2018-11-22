@@ -1,0 +1,5 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var AMQPSerializer_1 = require("./AMQPSerializer");
+exports.Serializer = AMQPSerializer_1.default;
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW5kZXguanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi8uLi9saWIvdXRpbHMvaW5kZXgudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7QUFBQSxtREFBeUQ7QUFBaEQsc0NBQUEsT0FBTyxDQUFjIiwic291cmNlc0NvbnRlbnQiOlsiZXhwb3J0IHsgZGVmYXVsdCBhcyBTZXJpYWxpemVyIH0gZnJvbSAnLi9BTVFQU2VyaWFsaXplcic7Il19

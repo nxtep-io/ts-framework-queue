@@ -5,6 +5,27 @@
   "version": "0.2.0",
   "configurations": [
     {
+      "type": "node",
+      "request": "launch",
+      "name": "start (ts-node/sample)",
+      "cwd": "${workspaceRoot}",
+      "runtimeExecutable": "node",
+      "runtimeArgs": [
+        "-r",
+        "ts-node/register",
+      ],
+      "args": [
+        "${workspaceFolder}/examples/publisher.ts"
+      ],
+      "env": {
+        "NODE_ENV": "development",
+        "PORT": "3000"
+      },
+      "sourceMaps": true,
+      "internalConsoleOptions": "openOnFirstSessionStart",
+      "console": "integratedTerminal"
+    },
+    {
       "name": "Debug Jest Tests",
       "type": "node",
       "request": "launch",
