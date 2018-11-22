@@ -10,7 +10,7 @@ export interface QueueInformation {
 }
 
 // tslint:disable-next-line:max-line-length
-export type ExchangeSubscriber<Data> = (data: any, message: AMQPMessage, actions: ExchangeActions<Data>) => Promise<void>;
+export type ExchangeSubscriber<Data> = (data: Data, message: AMQPMessage, actions: ExchangeActions<Data>) => Promise<void>;
 
 export interface ExchangeOptions<Data> {
   bind: QueueInformation[];
@@ -72,7 +72,7 @@ export default class Exchange<Data> {
   /**
    * Publishes data to exchange with specific routing.
    */
-  public async publish(route: string, data, options?: AMQPOptions.Publish) {
+  public async publish(route: string, data: Data, options?: AMQPOptions.Publish) {
     return this.channel.publish(this.name, route, data, options);
   }
 

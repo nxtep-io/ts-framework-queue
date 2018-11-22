@@ -11,7 +11,7 @@ export interface QueueOptions {
 }
 
 // tslint:disable-next-line:max-line-length
-export type QueueSubscriber<Data> = (data: any, message: AMQPMessage, actions: QueueActions<Data>) => Promise<void>;
+export type QueueSubscriber<Data> = (data: Data, message: AMQPMessage, actions: QueueActions<Data>) => Promise<void>;
 
 export default class Queue<Data> {
   public logger: Logger;
@@ -47,7 +47,7 @@ export default class Queue<Data> {
   /**
    * Publishes data to queue.
    */
-  public async publish(data: any, options?: AMQPOptions.Publish) {
+  public async publish(data: Data, options?: AMQPOptions.Publish) {
     return this.channel.sendToQueue(this.name, data, options);
   }
 

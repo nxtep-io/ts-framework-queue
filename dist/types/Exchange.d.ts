@@ -7,7 +7,7 @@ export interface QueueInformation {
     name: string;
     routes?: string[];
 }
-export declare type ExchangeSubscriber<Data> = (data: any, message: AMQPMessage, actions: ExchangeActions<Data>) => Promise<void>;
+export declare type ExchangeSubscriber<Data> = (data: Data, message: AMQPMessage, actions: ExchangeActions<Data>) => Promise<void>;
 export interface ExchangeOptions<Data> {
     bind: QueueInformation[];
     type?: string;
@@ -32,7 +32,7 @@ export default class Exchange<Data> {
     /**
      * Publishes data to exchange with specific routing.
      */
-    publish(route: string, data: any, options?: AMQPOptions.Publish): Promise<boolean>;
+    publish(route: string, data: Data, options?: AMQPOptions.Publish): Promise<boolean>;
     /**
      * Listens for new messages in the exchange.
      */
