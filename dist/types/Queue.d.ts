@@ -1,12 +1,14 @@
 import { Logger } from "ts-framework-common";
-import { AMQPOptions } from "./AMQP";
+import { AMQPMessage, AMQPOptions } from "./AMQP";
 import Channel from "./Channel";
+import { QueueActions } from "./utils";
 export interface QueueOptions {
-    exchangeName: string;
     routes?: string[];
     logger?: Logger;
+    exchangeName?: string;
     queueOptions?: AMQPOptions.AssertQueue;
 }
+export declare type QueueSubscriber<Data> = (data: any, message: AMQPMessage, actions: QueueActions<Data>) => Promise<void>;
 export default class Queue<Data> {
     name: string;
     channel: Channel<Data>;
@@ -19,4 +21,8 @@ export default class Queue<Data> {
      * Publishes data to queue.
      */
     publish(data: any, options?: AMQPOptions.Publish): Promise<boolean>;
+    /**
+     * Subscribes to queue messages.
+     */
+    subscribe(onData: QueueSubscriber<Data>, options?: AMQPOptions.Consume): void;
 }

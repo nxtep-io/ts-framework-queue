@@ -3,6 +3,7 @@ import { Logger } from "ts-framework-common";
 import { AMQPOptions, AMQPMessage } from "./AMQP";
 import Exchange, { ExchangeOptions } from "./Exchange";
 import { Serializer } from "./utils";
+import Queue, { QueueOptions } from "./Queue";
 
 export const NACK_TIMEOUT = 30000;
 
@@ -49,6 +50,20 @@ export default class Channel<Data> {
     // Ensure exchange exists in remote server
     await this.channel.assertExchange(name, options.type || 'direct', options.exchangeOptions);
     return Exchange.from(name, this, { logger: this.logger, ...options });
+  }
+
+  /**
+   * Gets a queue ready for publishing and consuming.
+   */
+  async queue(name, options: QueueOptions = {}): Promise<Queue<Data>> {
+    this.logger.debug('Initializing AMQP exchange instance', {
+      exchange: name,
+      options: options.queueOptions,
+    });
+
+    // Ensure queue exists in remote server
+    await this.channel.assertQueue(name, options.queueOptions);
+    return Queue.from(name, this, { logger: this.logger, ...options });
   }
 
   async assertQueue(name: string, options: AMQPOptions.AssertQueue) {

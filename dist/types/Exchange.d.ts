@@ -1,13 +1,14 @@
 import { Logger } from "ts-framework-common";
-import { AMQPOptions, AMQPMessage, AMQPActions } from "./AMQP";
+import { AMQPMessage, AMQPOptions } from "./AMQP";
 import Channel from "./Channel";
 import Queue from "./Queue";
+import { ExchangeActions } from "./utils";
 export declare const NACK_TIMEOUT = 30000;
 export interface QueueInformation {
     name: string;
     routes?: string[];
 }
-export declare type ExchangeSubscriber<Data> = (data: any, message: AMQPMessage, actions: AMQPActions<Data>) => Promise<void>;
+export declare type ExchangeSubscriber<Data> = (data: any, message: AMQPMessage, actions: ExchangeActions<Data>) => Promise<void>;
 export interface ExchangeOptions<Data> {
     bind: QueueInformation[];
     type?: string;
@@ -19,7 +20,7 @@ export interface ExchangeOptions<Data> {
 }
 export default class Exchange<Data> {
     name: string;
-    protected channel: Channel<Data>;
+    channel: Channel<Data>;
     options: ExchangeOptions<Data>;
     logger: Logger;
     queues: Queue<Data>[];
@@ -33,5 +34,8 @@ export default class Exchange<Data> {
      * Publishes data to exchange with specific routing.
      */
     publish(route: string, data: any, options?: AMQPOptions.Publish): Promise<boolean>;
+    /**
+     * Listens for new messages in the exchange.
+     */
     subscribe(queueName: string, onData: ExchangeSubscriber<Data>, options?: AMQPOptions.Consume): void;
 }

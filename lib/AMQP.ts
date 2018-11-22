@@ -6,12 +6,6 @@ export const NACK_TIMEOUT = 30000;
 
 export { AMQPOptions, AMQPMessage};
 
-export interface AMQPActions<Data> {
-  ack(allUpTo?: boolean): Promise<void>;
-  nack(allUpTo?: boolean, requeue?: boolean): Promise<void>;
-  publish(route: string, data: Data, options?: AMQPOptions.Publish): Promise<boolean>;
-}
-
 export interface AMQPServiceOptions extends DatabaseOptions {
   host?: string;
   nackTimeout?: number;

@@ -1,4 +1,4 @@
-import AMQP from '../lib';
+import AMQP from '../../lib';
 
 const amqp = new AMQP({ host: 'amqp://localhost' });
 
@@ -6,14 +6,9 @@ amqp.connect().then(async () => {
   amqp.logger.debug('Connected to server successfully!');
 
   const channel = await amqp.channel('test');
-  const exchange = await channel.exchange('test_exc', {
-    bind: [{
-      name: 'test_queue',
-      routes: ['lib']
-    }]
-  });
+  const queue = await channel.queue('test_queue');
 
-  await exchange.publish('lib', { time: Date.now() });
+  await queue.publish({ time: Date.now() });
   amqp.logger.info('Published to channel successfully!');
 
   // Wait some time to allow the message to be published correctly

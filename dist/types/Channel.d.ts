@@ -4,6 +4,7 @@ import { Logger } from "ts-framework-common";
 import { AMQPOptions, AMQPMessage } from "./AMQP";
 import Exchange, { ExchangeOptions } from "./Exchange";
 import { Serializer } from "./utils";
+import Queue, { QueueOptions } from "./Queue";
 export declare const NACK_TIMEOUT = 30000;
 export interface ChannelOptions<Data> {
     name?: string;
@@ -28,6 +29,10 @@ export default class Channel<Data> {
      * Gets an exchange ready for publishing and consuming.
      */
     exchange(name: any, options?: ExchangeOptions<Data>): Promise<Exchange<Data>>;
+    /**
+     * Gets a queue ready for publishing and consuming.
+     */
+    queue(name: any, options?: QueueOptions): Promise<Queue<Data>>;
     assertQueue(name: string, options: AMQPOptions.AssertQueue): Promise<import("amqplib/properties").Replies.AssertQueue>;
     bindQueue(queueName: string, exchangeName: string, route: string): Promise<import("amqplib/properties").Replies.Empty>;
     publish(name: string, route: string, data: any, options?: AMQPOptions.Publish): Promise<boolean>;

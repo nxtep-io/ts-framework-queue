@@ -1,7 +1,8 @@
 import { BaseError, Logger } from "ts-framework-common";
-import { AMQPOptions, AMQPMessage, AMQPActions } from "./AMQP";
+import { AMQPMessage, AMQPOptions } from "./AMQP";
 import Channel from "./Channel";
 import Queue from "./Queue";
+import { ExchangeActions } from "./utils";
 
 export const NACK_TIMEOUT = 30000;
 
@@ -10,7 +11,8 @@ export interface QueueInformation {
   routes?: string[];
 }
 
-export type ExchangeSubscriber<Data> = (data: any, message: AMQPMessage, actions: AMQPActions<Data>) => Promise<void>;
+// tslint:disable-next-line:max-line-length
+export type ExchangeSubscriber<Data> = (data: any, message: AMQPMessage, actions: ExchangeActions<Data>) => Promise<void>;
 
 export interface ExchangeOptions<Data> {
   bind: QueueInformation[];
@@ -26,7 +28,7 @@ export default class Exchange<Data> {
   public logger: Logger;
   public queues: Queue<Data>[] = [];
 
-  constructor(public name: string, protected channel: Channel<Data>, public options: ExchangeOptions<Data>) {
+  constructor(public name: string, public channel: Channel<Data>, public options: ExchangeOptions<Data>) {
     this.logger = options.logger || Logger.getInstance();
     this.queues = options.queues || [];
 
@@ -76,6 +78,9 @@ export default class Exchange<Data> {
     return this.channel.publish(this.name, route, data, options);
   }
 
+  /**
+   * Listens for new messages in the exchange.
+   */
   public subscribe(queueName: string, onData: ExchangeSubscriber<Data>, options?: AMQPOptions.Consume): void {
     const queue = this.queues.find(q => q.name === queueName);
 
@@ -83,20 +88,12 @@ export default class Exchange<Data> {
     if (!queue) {
       throw new BaseError(`Cannot subscribe to unbound queue "${queueName}"`);
     }
-    const actions = (msg) => ({
-      ack: async (allUpTo?: boolean) => {
-        this.channel.ack(msg, allUpTo)
-      },
-      nack: async (allUpTo?: boolean, requeue?: boolean) => {
-        this.channel.nack(msg, allUpTo, requeue)
-      },
-      publish: async (route, data, options?: AMQPOptions.Publish) => {
-        this.publish(route, data, options);
-        return true;
-      },
-    });
 
-    const wrapper = (content: any, message: AMQPMessage) => onData(content, message, actions(message));
+    // Prepare wrapper for channel subscriber
+    const wrapper = async (content: any, message: AMQPMessage) => {
+      await onData(content, message, new ExchangeActions(this, message))
+    };
+
     this.channel.consume(queueName, wrapper, options);
   }
 }
