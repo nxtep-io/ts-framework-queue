@@ -3,6 +3,7 @@ ts-framework-queue
 
 RabbitMQ abstraction layer for TS Framework
 
+**NOTICE:** This module is considered to be a developer preview, not suitable for production.
 <br />
 
 ## Getting started
@@ -19,7 +20,7 @@ npm install "github:nxtep-io/ts-framework-queue#master";
 
 ## Samples
 
-Checkout the [samples/](https://github.com/nxtep-io/ts-framework-queue/tree/master/samples) directory.
+Checkout the [examples/](https://github.com/nxtep-io/ts-framework-queue/tree/master/examples) directory.
 
 <br/>
 
