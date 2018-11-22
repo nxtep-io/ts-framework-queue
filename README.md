@@ -3,6 +3,7 @@ ts-framework-queue
 
 RabbitMQ abstraction layer for TS Framework
 
+**NOTICE:** This module is considered to be a developer preview, not suitable for production.
 <br />
 
 ## Getting started
