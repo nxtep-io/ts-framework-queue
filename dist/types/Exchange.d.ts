@@ -3,7 +3,6 @@ import { AMQPMessage, AMQPOptions } from "./AMQP";
 import Channel from "./Channel";
 import Queue from "./Queue";
 import { ExchangeActions } from "./utils";
-export declare const NACK_TIMEOUT = 30000;
 export interface QueueInformation {
     name: string;
     routes?: string[];

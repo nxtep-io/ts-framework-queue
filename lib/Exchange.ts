@@ -4,8 +4,6 @@ import Channel from "./Channel";
 import Queue from "./Queue";
 import { ExchangeActions } from "./utils";
 
-export const NACK_TIMEOUT = 30000;
-
 export interface QueueInformation {
   name: string;
   routes?: string[];

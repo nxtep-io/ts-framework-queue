@@ -4,8 +4,7 @@ import { AMQPOptions, AMQPMessage } from "./AMQP";
 import Exchange, { ExchangeOptions } from "./Exchange";
 import { Serializer } from "./utils";
 import Queue, { QueueOptions } from "./Queue";
-
-export const NACK_TIMEOUT = 30000;
+import { NACK_TIMEOUT } from "./defaults";
 
 export interface ChannelOptions<Data> {
   name?: string;

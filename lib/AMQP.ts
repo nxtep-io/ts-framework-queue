@@ -1,10 +1,8 @@
-import { connect, Connection, Options as AMQPOptions, Message as AMQPMessage } from "amqplib";
+import { connect, Connection, Message as AMQPMessage, Options as AMQPOptions } from "amqplib";
 import { Database, DatabaseOptions } from "ts-framework-common";
 import Channel, { ChannelOptions } from "./Channel";
 
-export const NACK_TIMEOUT = 30000;
-
-export { AMQPOptions, AMQPMessage};
+export { AMQPOptions, AMQPMessage };
 
 export interface AMQPServiceOptions extends DatabaseOptions {
   host?: string;
@@ -34,6 +32,9 @@ export default class AMQPService<Data> extends Database {
     return this.options;
   }
 
+  /**
+   * Opens a new channel in the AMQP connection.
+   */
   async channel(name: string, options?: ChannelOptions<Data>): Promise<Channel<Data>> {
     this.ensureConnection();
     let channel = this.channels.find(channel => channel.options.name === name);
@@ -46,6 +47,9 @@ export default class AMQPService<Data> extends Database {
     return channel;
   }
 
+  /**
+   * Disconnects from AMQP server.
+   */
   async disconnect(): Promise<void> {
     // Close all available channels
     if (this.channels) {
@@ -59,6 +63,9 @@ export default class AMQPService<Data> extends Database {
     this.connection = undefined;
   }
 
+  /**
+   * Ensures the database is connected.
+   */
   protected ensureConnection() {
     if (!this.isConnected()) {
       throw new Error("Channel is not available, queue may not be connected");
