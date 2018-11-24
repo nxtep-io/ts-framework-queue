@@ -27,7 +27,7 @@ export default class Channel<Data> {
     /**
      * Gets an exchange ready for publishing and consuming.
      */
-    exchange(name: any, options?: ExchangeOptions<Data>): Promise<Exchange<Data>>;
+    exchange(name: any, options: ExchangeOptions<Data>): Promise<Exchange<Data>>;
     /**
      * Gets a queue ready for publishing and consuming.
      */

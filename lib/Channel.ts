@@ -39,7 +39,7 @@ export default class Channel<Data> {
   /**
    * Gets an exchange ready for publishing and consuming.
    */
-  async exchange(name, options?: ExchangeOptions<Data>): Promise<Exchange<Data>> {
+  async exchange(name, options: ExchangeOptions<Data>): Promise<Exchange<Data>> {
     this.logger.debug('Initializing AMQP exchange instance', {
       exchange: name,
       bind: options.bind,
