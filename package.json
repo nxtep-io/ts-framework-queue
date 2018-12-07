@@ -1,6 +1,6 @@
 {
   "name": "ts-framework-queue",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "RabbitMQ abstraction layer for TS Framework",
   "author": "Luis Brito <luis@nxtep.io>",
   "license": "MIT",
@@ -23,8 +23,7 @@
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged",
-      "post-commit": "git update-index --again",
-      "pre-push": "yarn test"
+      "post-commit": "git update-index --again"
     }
   },
   "lint-staged": {
