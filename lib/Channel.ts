@@ -1,5 +1,5 @@
 import { Channel as BaseChannel, Connection as BaseConnection } from "amqplib";
-import { Logger } from "ts-framework-common";
+import { Logger, LoggerInstance } from "ts-framework-common";
 import { AMQPOptions, AMQPMessage } from "./AMQP";
 import Exchange, { ExchangeOptions } from "./Exchange";
 import { Serializer } from "./utils";
@@ -8,14 +8,14 @@ import { NACK_TIMEOUT } from "./defaults";
 
 export interface ChannelOptions<Data> {
   name?: string;
-  logger?: Logger;
+  logger?: LoggerInstance;
   nackTimeout?: number;
   exchanges?: Exchange<Data>[];
   serializer?: Serializer;
 }
 
 export default class Channel<Data> {
-  public logger: Logger;
+  public logger: LoggerInstance;
   protected exchanges: Exchange<Data>[] = [];
   protected serializer: Serializer = new Serializer();
 

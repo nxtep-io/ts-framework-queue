@@ -1,4 +1,4 @@
-import { BaseError, Logger } from "ts-framework-common";
+import { BaseError, Logger, LoggerInstance } from "ts-framework-common";
 import { AMQPMessage, AMQPOptions } from "./AMQP";
 import Channel from "./Channel";
 import Queue from "./Queue";
@@ -15,7 +15,7 @@ export type ExchangeSubscriber<Data> = (data: Data, message: AMQPMessage, action
 export interface ExchangeOptions<Data> {
   bind: QueueInformation[];
   type?: string;
-  logger?: Logger;
+  logger?: LoggerInstance;
   queues?: Queue<Data>[];
   prefetch?: number;
   queueOptions?: AMQPOptions.AssertQueue;
@@ -23,7 +23,7 @@ export interface ExchangeOptions<Data> {
 }
 
 export default class Exchange<Data> {
-  public logger: Logger;
+  public logger: LoggerInstance;
   public queues: Queue<Data>[] = [];
 
   constructor(public name: string, public channel: Channel<Data>, public options: ExchangeOptions<Data>) {

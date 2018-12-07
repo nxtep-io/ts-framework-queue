@@ -24,6 +24,10 @@ export default class AMQPService<Data> extends Database {
   }
 
   async connect(options?: AMQPOptions.Connect): Promise<DatabaseOptions> {
+    this.logger.debug('Connecting to the AMQP cluster', {
+      host: this.options.host || "amqp://localhost",
+    });
+
     // Prepare connection and channel for messaging
     this.connection = await connect(
       this.options.host || "amqp://localhost",

@@ -1,13 +1,13 @@
 /// <reference types="node" />
 import { Channel as BaseChannel, Connection as BaseConnection } from "amqplib";
-import { Logger } from "ts-framework-common";
+import { LoggerInstance } from "ts-framework-common";
 import { AMQPOptions, AMQPMessage } from "./AMQP";
 import Exchange, { ExchangeOptions } from "./Exchange";
 import { Serializer } from "./utils";
 import Queue, { QueueOptions } from "./Queue";
 export interface ChannelOptions<Data> {
     name?: string;
-    logger?: Logger;
+    logger?: LoggerInstance;
     nackTimeout?: number;
     exchanges?: Exchange<Data>[];
     serializer?: Serializer;
@@ -15,7 +15,7 @@ export interface ChannelOptions<Data> {
 export default class Channel<Data> {
     protected channel: BaseChannel;
     options: ChannelOptions<Data>;
-    logger: Logger;
+    logger: LoggerInstance;
     protected exchanges: Exchange<Data>[];
     protected serializer: Serializer;
     constructor(channel: BaseChannel, options?: ChannelOptions<Data>);

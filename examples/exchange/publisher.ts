@@ -3,8 +3,6 @@ import AMQP from '../../lib';
 const amqp = new AMQP({ host: 'amqp://localhost' });
 
 amqp.connect().then(async () => {
-  amqp.logger.debug('Connected to server successfully!');
-
   const channel = await amqp.channel('test');
   const exchange = await channel.exchange('test_exc', {
     bind: [{

@@ -1,11 +1,11 @@
-import { BaseError, Logger } from "ts-framework-common";
+import { BaseError, Logger, LoggerInstance } from "ts-framework-common";
 import { AMQPMessage, AMQPOptions } from "./AMQP";
 import Channel from "./Channel";
 import { QueueActions } from "./utils";
 
 export interface QueueOptions {
   routes?: string[];
-  logger?: Logger;
+  logger?: LoggerInstance;
   exchangeName?: string;
   queueOptions?: AMQPOptions.AssertQueue;
 }
@@ -14,7 +14,7 @@ export interface QueueOptions {
 export type QueueSubscriber<Data> = (data: Data, message: AMQPMessage, actions: QueueActions<Data>) => Promise<void>;
 
 export default class Queue<Data> {
-  public logger: Logger;
+  public logger: LoggerInstance;
 
   constructor(public name: string, public channel: Channel<Data>, public options: QueueOptions) {
     this.logger = options.logger || Logger.getInstance();
