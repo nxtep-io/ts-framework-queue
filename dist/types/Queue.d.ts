@@ -18,6 +18,10 @@ export default class Queue<Data> {
     static from<Data>(name: string, channel: Channel<Data>, options: QueueOptions): Promise<Queue<Data>>;
     bind(): Promise<void>;
     /**
+     * Assert queue in the channel.
+     */
+    assert(): Promise<import("amqplib/properties").Replies.AssertQueue>;
+    /**
      * Publishes data to queue.
      */
     publish(data: Data, options?: AMQPOptions.Publish): Promise<boolean>;

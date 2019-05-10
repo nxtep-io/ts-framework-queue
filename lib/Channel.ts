@@ -61,7 +61,6 @@ export default class Channel<Data> {
     });
 
     // Ensure queue exists in remote server
-    await this.channel.assertQueue(name, options.queueOptions);
     return Queue.from(name, this, { logger: this.logger, ...options });
   }
 

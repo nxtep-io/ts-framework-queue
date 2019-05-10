@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Queue | ts-framework-queue (v0.0.1)</title>
+	<title>Queue | ts-framework-queue (v1.0.1)</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -22,7 +22,7 @@
 						<li class="state loading">Preparing search index...</li>
 						<li class="state failure">The search index is not available</li>
 					</ul>
-					<a href="../index.html" class="title">ts-framework-queue (v0.0.1)</a>
+					<a href="../index.html" class="title">ts-framework-queue (v1.0.1)</a>
 				</div>
 				<div class="table-cell" id="tsd-widgets">
 					<div id="tsd-filter">
@@ -104,6 +104,7 @@
 						<section class="tsd-index-section tsd-is-external">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="queue.html#assert" class="tsd-kind-icon">assert</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="queue.html#bind" class="tsd-kind-icon">bind</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="queue.html#publish" class="tsd-kind-icon">publish</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="queue.html#subscribe" class="tsd-kind-icon">subscribe</a></li>
@@ -125,7 +126,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/nxtep-io/ts-framework-queue/blob/b712b31/lib/Queue.ts#L17">Queue.ts:17</a></li>
+									<li>Defined in <a href="https://github.com/nxtep-io/ts-framework-queue/blob/272ed14/lib/Queue.ts#L17">Queue.ts:17</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -153,17 +154,17 @@
 					<div class="tsd-signature tsd-kind-icon">channel<span class="tsd-signature-symbol">:</span> <a href="channel.html" class="tsd-signature-type">Channel</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Data</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/nxtep-io/ts-framework-queue/blob/b712b31/lib/Queue.ts#L19">Queue.ts:19</a></li>
+							<li>Defined in <a href="https://github.com/nxtep-io/ts-framework-queue/blob/272ed14/lib/Queue.ts#L19">Queue.ts:19</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-external">
 					<a name="logger" class="tsd-anchor"></a>
 					<h3>logger</h3>
-					<div class="tsd-signature tsd-kind-icon">logger<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Logger</span></div>
+					<div class="tsd-signature tsd-kind-icon">logger<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">LoggerInstance</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/nxtep-io/ts-framework-queue/blob/b712b31/lib/Queue.ts#L17">Queue.ts:17</a></li>
+							<li>Defined in <a href="https://github.com/nxtep-io/ts-framework-queue/blob/272ed14/lib/Queue.ts#L17">Queue.ts:17</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -173,7 +174,7 @@
 					<div class="tsd-signature tsd-kind-icon">name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/nxtep-io/ts-framework-queue/blob/b712b31/lib/Queue.ts#L19">Queue.ts:19</a></li>
+							<li>Defined in <a href="https://github.com/nxtep-io/ts-framework-queue/blob/272ed14/lib/Queue.ts#L19">Queue.ts:19</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -183,13 +184,35 @@
 					<div class="tsd-signature tsd-kind-icon">options<span class="tsd-signature-symbol">:</span> <a href="../interfaces/queueoptions.html" class="tsd-signature-type">QueueOptions</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/nxtep-io/ts-framework-queue/blob/b712b31/lib/Queue.ts#L19">Queue.ts:19</a></li>
+							<li>Defined in <a href="https://github.com/nxtep-io/ts-framework-queue/blob/272ed14/lib/Queue.ts#L19">Queue.ts:19</a></li>
 						</ul>
 					</aside>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group tsd-is-external">
 				<h2>Methods</h2>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-external">
+					<a name="assert" class="tsd-anchor"></a>
+					<h3>assert</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">assert<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">AssertQueue</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/nxtep-io/ts-framework-queue/blob/272ed14/lib/Queue.ts#L50">Queue.ts:50</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Assert queue in the channel.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">AssertQueue</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-external">
 					<a name="bind" class="tsd-anchor"></a>
 					<h3>bind</h3>
@@ -200,7 +223,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/nxtep-io/ts-framework-queue/blob/b712b31/lib/Queue.ts#L30">Queue.ts:30</a></li>
+									<li>Defined in <a href="https://github.com/nxtep-io/ts-framework-queue/blob/272ed14/lib/Queue.ts#L30">Queue.ts:30</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -217,7 +240,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/nxtep-io/ts-framework-queue/blob/b712b31/lib/Queue.ts#L50">Queue.ts:50</a></li>
+									<li>Defined in <a href="https://github.com/nxtep-io/ts-framework-queue/blob/272ed14/lib/Queue.ts#L57">Queue.ts:57</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -248,7 +271,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/nxtep-io/ts-framework-queue/blob/b712b31/lib/Queue.ts#L57">Queue.ts:57</a></li>
+									<li>Defined in <a href="https://github.com/nxtep-io/ts-framework-queue/blob/272ed14/lib/Queue.ts#L64">Queue.ts:64</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -279,7 +302,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/nxtep-io/ts-framework-queue/blob/b712b31/lib/Queue.ts#L24">Queue.ts:24</a></li>
+									<li>Defined in <a href="https://github.com/nxtep-io/ts-framework-queue/blob/272ed14/lib/Queue.ts#L24">Queue.ts:24</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -347,6 +370,9 @@
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-external">
 								<a href="queue.html#options" class="tsd-kind-icon">options</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-external">
+								<a href="queue.html#assert" class="tsd-kind-icon">assert</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-external">
 								<a href="queue.html#bind" class="tsd-kind-icon">bind</a>

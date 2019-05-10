@@ -29,7 +29,7 @@ export default class Queue<Data> {
 
   public async bind() {
     // Asert queue exists in current channel
-    await this.channel.assertQueue(this.name, this.options.queueOptions);
+    await this.assert();
 
     // Bind all routes from channel
     if (this.options.routes && this.options.routes.length && this.options.exchangeName) {
@@ -42,6 +42,13 @@ export default class Queue<Data> {
     } else if (this.options.routes && this.options.routes.length) {
       throw new BaseError('Cannot bind queue to exchange without a valid name');
     }
+  }
+
+  /**
+   * Assert queue in the channel.
+   */
+  public async assert() {
+    return this.channel.assertQueue(this.name, this.options.queueOptions);
   }
 
   /**
