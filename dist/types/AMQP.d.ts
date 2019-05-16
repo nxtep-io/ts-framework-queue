@@ -13,6 +13,7 @@ export default class AMQPService<Data> extends Database {
     protected channels: Channel<Data>[];
     constructor(options: AMQPServiceOptions);
     isConnected(): boolean;
+    query(): Promise<void>;
     connect(options?: AMQPOptions.Connect): Promise<DatabaseOptions>;
     /**
      * Opens a new channel in the AMQP connection.

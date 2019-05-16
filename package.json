@@ -1,6 +1,6 @@
 {
   "name": "ts-framework-queue",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "RabbitMQ abstraction layer for TS Framework",
   "author": "Luis Brito <luis@nxtep.io>",
   "license": "MIT",
@@ -36,7 +36,7 @@
   "dependencies": {
     "@types/amqplib": "^0.5.9",
     "amqplib": "^0.5.3",
-    "ts-framework-common": "nxtep-io/ts-framework-common#2.2.0"
+    "ts-framework-common": "nxtep-io/ts-framework-common#2.4.1"
   },
   "devDependencies": {
     "@types/jest": "^23.3.1",

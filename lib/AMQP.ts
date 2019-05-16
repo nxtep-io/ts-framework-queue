@@ -1,5 +1,5 @@
 import { connect, Connection, Message as AMQPMessage, Options as AMQPOptions } from "amqplib";
-import { Database, DatabaseOptions } from "ts-framework-common";
+import { Database, DatabaseOptions, BaseError } from "ts-framework-common";
 import Channel, { ChannelOptions } from "./Channel";
 
 export { AMQPOptions, AMQPMessage };
@@ -21,6 +21,10 @@ export default class AMQPService<Data> extends Database {
 
   isConnected(): boolean {
     return !!this.connection;
+  }
+
+  async query() {
+    throw new BaseError('AMQP service does not support querying');
   }
 
   async connect(options?: AMQPOptions.Connect): Promise<DatabaseOptions> {
