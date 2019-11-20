@@ -11,6 +11,8 @@ export interface ChannelOptions<Data> {
     nackTimeout?: number;
     exchanges?: Exchange<Data>[];
     serializer?: Serializer;
+    onError?: (err: any) => void;
+    onClose?: (err: any) => void;
 }
 export default class Channel<Data> {
     protected channel: BaseChannel;
