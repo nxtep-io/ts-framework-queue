@@ -37,6 +37,10 @@ export default class AMQPService<Data> extends Database {
       this.options.host || "amqp://localhost",
       options
     );
+
+    process.once('SIGINT', () => this.connection.close().bind(this.connection))
+    process.once('SIGTERM', () => this.connection.close().bind(this.connection))
+
     return this.options;
   }
 
