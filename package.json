@@ -1,6 +1,6 @@
 {
   "name": "ts-framework-queue",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "RabbitMQ abstraction layer for TS Framework",
   "author": "Luis Brito <luis@nxtep.io>",
   "license": "MIT",
