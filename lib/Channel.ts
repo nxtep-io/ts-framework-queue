@@ -12,6 +12,8 @@ export interface ChannelOptions<Data> {
   nackTimeout?: number;
   exchanges?: Exchange<Data>[];
   serializer?: Serializer;
+  onError?: (err: any) => void;
+  onClose?: (err: any) => void;
 }
 
 export default class Channel<Data> {
@@ -26,6 +28,14 @@ export default class Channel<Data> {
 
   public static async from<Data>(connection: BaseConnection, options: ChannelOptions<Data>): Promise<Channel<Data>> {
     const base = await connection.createChannel();
+
+    const logger = options.logger || Logger.getInstance();
+    const onError = options.onError || (err => logger.error(`Received error from AMQP channel ${options.name}`, err));
+    const onClose = options.onClose || (() => logger.debug(`AMQP channel ${options.name} is closing`));
+
+    base.on('error', onError);
+    base.on('close', onClose);
+
     return new Channel(base, options);
   }
 
