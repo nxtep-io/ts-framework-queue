@@ -6,6 +6,8 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "allowSyntheticDefaultImports": false,
+    "skipDefaultLibCheck": true,
+    "skipLibCheck": true,
     "noImplicitAny": false,
     "inlineSourceMap": true,
     "inlineSources": true,

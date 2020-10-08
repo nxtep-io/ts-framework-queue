@@ -34,12 +34,12 @@ export default class Channel<Data> {
      * Gets a queue ready for publishing and consuming.
      */
     queue(name: any, options?: QueueOptions): Promise<Queue<Data>>;
-    assertQueue(name: string, options: AMQPOptions.AssertQueue): Promise<import("amqplib/properties").Replies.AssertQueue>;
-    bindQueue(queueName: string, exchangeName: string, route: string): Promise<import("amqplib/properties").Replies.Empty>;
+    assertQueue(name: string, options: AMQPOptions.AssertQueue): Promise<import("amqplib").Replies.AssertQueue>;
+    bindQueue(queueName: string, exchangeName: string, route: string): Promise<import("amqplib").Replies.Empty>;
     publish(name: string, route: string, data: any, options?: AMQPOptions.Publish): Promise<boolean>;
     sendToQueue(name: string, data: any, options?: AMQPOptions.Publish): Promise<boolean>;
-    prefetch(num: number, global?: boolean): Promise<import("amqplib/properties").Replies.Empty>;
-    consume(queue: string, onMessage: (content: any, msg: AMQPMessage) => any, options?: AMQPOptions.Consume): Promise<import("amqplib/properties").Replies.Consume>;
+    prefetch(num: number, global?: boolean): Promise<import("amqplib").Replies.Empty>;
+    consume(queue: string, onMessage: (content: any, msg: AMQPMessage) => any, options?: AMQPOptions.Consume): Promise<import("amqplib").Replies.Consume>;
     ack(message: AMQPMessage, allUpTo?: boolean): Promise<void>;
-    nack(message: AMQPMessage, allUpTo?: boolean, requeue?: boolean): Promise<NodeJS.Timer>;
+    nack(message: AMQPMessage, allUpTo?: boolean, requeue?: boolean): Promise<NodeJS.Timeout>;
 }

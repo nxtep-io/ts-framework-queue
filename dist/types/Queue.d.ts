@@ -20,7 +20,7 @@ export default class Queue<Data> {
     /**
      * Assert queue in the channel.
      */
-    assert(): Promise<import("amqplib/properties").Replies.AssertQueue>;
+    assert(): Promise<import("amqplib").Replies.AssertQueue>;
     /**
      * Publishes data to queue.
      */

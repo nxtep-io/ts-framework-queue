@@ -1,6 +1,6 @@
 {
   "name": "ts-framework-queue",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "RabbitMQ abstraction layer for TS Framework",
   "author": "Luis Brito <luis@nxtep.io>",
   "license": "MIT",
@@ -40,6 +40,7 @@
   },
   "devDependencies": {
     "@types/jest": "^23.3.1",
+    "@types/node": "^14.11.5",
     "husky": "^1.0.0-rc.13",
     "jest": "^23.4.2",
     "lint-staged": "^7.2.0",
@@ -54,7 +55,7 @@
     "tslint-config-airbnb": "^5.9.2",
     "tslint-config-prettier": "^1.14.0",
     "tslint-no-circular-imports": "^0.5.0",
-    "typedoc": "^0.13.0",
+    "typedoc": "^0.19.2",
     "typescript": "^3.1.2"
   }
 }

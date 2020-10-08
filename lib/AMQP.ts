@@ -63,16 +63,20 @@ export default class AMQPService<Data> extends Database {
    * Disconnects from AMQP server.
    */
   async disconnect(): Promise<void> {
-    // Close all available channels
-    if (this.channels) {
-      const tasks = this.channels.map(channel => channel.close());
-      await Promise.all(tasks);
-      this.channels = [];
-    }
+    try {
+      // Close all available channels
+      if (this.channels) {
+        const tasks = this.channels.map(channel => channel?.close());
+        await Promise.all(tasks);
+        this.channels = [];
+      }
 
-    // Close the connection
-    await this.connection.close();
-    this.connection = undefined;
+      // Close the connection
+      await this.connection?.close();
+      this.connection = undefined;
+    } catch (exception) {
+      this.logger?.warn(exception);
+    }
   }
 
   /**
